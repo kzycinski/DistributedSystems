@@ -87,7 +87,7 @@ def join_client():
     neighbour_socket.send(bytes("{}:{}:{}".format(TokenType.REQUEST.value, client_ip, client_port), 'utf-8'))
     print("Sent request, waiting for response...")
     conn, addr = client_socket.accept()
-    message = conn.recv(1024).decode("utf-8")
+    message = conn.recv(4096).decode("utf-8")
     message = message.split(":")
     if message[0] == str(TokenType.ACK.value):
         if neighbour_ip != message[1] or neighbour_port != int(message[2]):

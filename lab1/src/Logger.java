@@ -15,18 +15,6 @@ public class Logger {
     private static String MCAST_ADDR = "230.0.0.0";
 
 
-    public static void appendStrToFile(String fileName, String str)
-    {
-        try {
-            BufferedWriter out = new BufferedWriter(new FileWriter(fileName, true));
-            out.write(str);
-            out.write("\n");
-            out.close();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     public static void main(String[] args) throws IOException {
     	String fileName = args[0];
     	System.out.println(fileName);
@@ -39,7 +27,15 @@ public class Logger {
             String res = new String(dgram.getData());
             System.err.println(res + "\n");
             dgram.setLength(b.length);
-            appendStrToFile(fileName, res);
+            try {
+            BufferedWriter out = new BufferedWriter(new FileWriter(fileName, true));
+            out.write(res);
+            out.write("\n");
+            out.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
         }
     }
 }

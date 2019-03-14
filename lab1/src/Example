@@ -1,0 +1,11 @@
+python launcher.py id1 127.0.0.1 6969 127.0.0.1 6969 tcp 1
+python launcher.py id2 127.0.0.2 6969 127.0.0.1 6969 tcp 
+python launcher.py id3 127.0.0.3 6969 127.0.0.2 6969 tcp 
+
+python launcher.py id1 127.0.0.1 6969 127.0.0.1 6969 udp 1
+python launcher.py id2 127.0.0.2 6969 127.0.0.1 6969 udp 
+python launcher.py id3 127.0.0.3 6969 127.0.0.2 6969 udp 
+
+javac Logger.javac
+java Logger log1
+java Logger log2

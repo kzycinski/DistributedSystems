@@ -184,10 +184,12 @@ def receive_messages():
         elif token_type == TokenType.MESSAGE.value:
             msg = msg.split(":")
             if msg[1] == client_ip and int(msg[2]) == client_port:
+                log_token()
                 print("Got message from {}: \n '{}'".format(msg[3], msg[4]))
                 Thread(target=send_token).start()
             else:
                 if msg[4] == client_id:
+                    log_token()
                     print("Message came back to me, deleting.")
                     Thread(target=send_token).start()
                 else:
@@ -216,7 +218,7 @@ def send_messages():
         next_lock.acquire()
         neighbour_socket.send(bytes(message, 'utf-8'))
         next_lock.release()
-        token = False
+        has_token = False
         print("Message sent")
         token_lock.release()
 
